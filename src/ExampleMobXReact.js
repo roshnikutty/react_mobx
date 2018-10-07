@@ -8,8 +8,8 @@ class ExampleMobXReact extends Component {
         this.state = {
             counter: 0
         }
-        this.increment = this.increment.bind(this);
-        this.decrement = this.decrement.bind(this);
+        this.incrementCounter = this.incrementCounter.bind(this);
+        this.decrementCounter = this.decrementCounter.bind(this);
     }
     incrementCounter() {
         this.setState((state) => {
@@ -24,7 +24,7 @@ class ExampleMobXReact extends Component {
 
     render() {
         return <React.Fragment>
-            <p>Counter: {this.state.counter} </p>
+            <p> Counter: {this.state.counter} </p>
             <button onClick={this.incrementCounter} label="+"> + </button>
             <button onClick={this.decrementCounter} label="-"> - </button>
         </React.Fragment>
