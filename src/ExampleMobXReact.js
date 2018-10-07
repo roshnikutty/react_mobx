@@ -1,35 +1,37 @@
-import React, { Component } from 'react'
-
-//counter without MobX
+import React, { Component } from 'react';
+import { extendObservable } from 'mobx';
+import { observer }  from 'mobx-react';
 
 class ExampleMobXReact extends Component {
-    constructor() {
-        super()
-        this.state = {
-            counter: 0
-        }
-        this.increment = this.increment.bind(this);
-        this.decrement = this.decrement.bind(this);
-    }
-    incrementCounter() {
-        this.setState((state) => {
-            return { counter: state.counter + 1 }
-        })
-    }
-    decrementCounter() {
-        this.setState((state) => {
-            return state.counter > 0 ? { counter: state.counter - 1 } : { counter: 0}
-        })
-    }
+  constructor() {
+    super();
 
-    render() {
-        return <React.Fragment>
-            <p>Counter: {this.state.counter} </p>
-            <button onClick={this.incrementCounter} label="+"> + </button>
-            <button onClick={this.decrementCounter} label="-"> - </button>
-        </React.Fragment>
+ //extendObservable is same as @observable from mobx
+    extendObservable(this, {
+      counter: 0,
+    })
+  }
 
-    }
+  incrementCounter = () => {
+    this.counter++;
+  }
+
+  decrementCounter = () => {
+    this.counter--;
+  }
+
+  render() {
+    return (
+      <div>
+        Counter: {this.counter}
+
+        <button onClick={this.incrementCounter} type="button"> + </button>
+        <button onClick={this.decrementCounter} type="button"> - </button>
+      </div>
+    );
+  }
 }
 
-export default ExampleMobXReact;
+//observer makes sure that the ExampleMobXReact component reacts 
+//when an observable value changes; same as @observer from mobx-react
+export default observer(ExampleMobXReact);
