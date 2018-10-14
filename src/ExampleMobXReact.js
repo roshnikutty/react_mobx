@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { extendObservable } from 'mobx';
 import { observer }  from 'mobx-react';
+import Devtools from 'mobx-react-devtools';
 
 class ExampleMobXReact extends Component {
   constructor() {
@@ -27,6 +28,7 @@ class ExampleMobXReact extends Component {
 
         <button onClick={this.incrementCounter} type="button"> + </button>
         <button onClick={this.decrementCounter} type="button"> - </button>
+      <Devtools />
       </div>
     );
   }
